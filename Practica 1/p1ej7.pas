@@ -9,24 +9,26 @@ novelas=record
 end;
 archivo=file of novelas;
 procedure crear_archivo();
-var arch:archivo;texto:text;n:novelas;nom:cadena;
+var nom:cadena;arch:archivo;carga:text;n:novelas;
 begin
-	writeln('Ingrese Nombre del Archivo: ');
+	writeln('Ingrese Nombre del Archivo Binario: ');
 	readln(nom);
 	assign(arch,nom);
-	assign(texto,'novelas.txt');
-	reset(texto);
+	assign(carga,'novelas.txt');
+	reset(carga);
 	rewrite(arch);
-	while(not eof(texto)) do begin
+	while not(EOF(carga)) do begin
 		with n do begin
-			readln(texto,cod,precio,genero);
-			readln(texto,nom);
+			readln(carga,cod,precio,genero);
+			readln(carga,nom);
 		end;
 		write(arch,n);
 	end;
+	writeln('Archivo Cargado! ');
 	close(arch);
-	writeln('Archivo Exportado de TXT a Binario!');
+	close(carga);
 end;
+
 procedure abrir_archivo(var arch:archivo);
 var nom:cadena;
 begin
@@ -42,10 +44,10 @@ end;
 	assign(texto,'novelas.txt');
 	rewrite(texto);
 	while not(eof(arch)) do begin
-	read(arch,n);
-	with n do begin
-	writeln(texto,cod,' ',precio:0:2,' ',genero);
-	writeln(texto,nom);
+		read(arch,n);
+		with n do begin
+			writeln(texto,cod,' ',precio:0:2,' ',genero);
+			writeln(texto,nom);
 	end;
  end;
  writeln('Archivo Exportado!');
@@ -60,7 +62,7 @@ begin
 		readln(n.cod);
 			if(n.cod<>0) then begin
 				writeln('Ingrese precio: ');
-				readln(n.cod);
+				readln(n.precio);
 				writeln('Ingrese genero: ');
 				readln(n.genero);
 				writeln('Ingrese nombre: ');
@@ -69,7 +71,6 @@ begin
 		seek(arch,filesize(arch));
 		write(arch,n);
 		close(arch);
-		exportar();
 end;
 function buscarpos(var arch:archivo):integer;
 var n:novelas;ok:boolean;cod:integer;
@@ -80,7 +81,7 @@ readln(cod);
 	while(not eof(arch))  and (not ok)do begin
 		read(arch,n);
 		if(n.cod=cod) then begin
-			buscarpos:=filepos(arch);
+			buscarpos:=(filepos(arch))-1;
 			ok:=true
 		end;
 	end;
@@ -122,26 +123,62 @@ procedure modificar_nom();
 	else 
 		writeln('Codigo de Novela No Existente!');
 		close(arch);
-		exportar();
  end; 
-
+ procedure modificar_cod();
+ var arch:archivo;pos:integer;cod:integer;n:novelas;
+ begin
+	abrir_archivo(arch);
+	pos:=buscarpos(arch);
+	if(pos<>-1) then begin
+		seek(arch,pos);
+		read(arch,n);
+		writeln('Ingrese Nuevo Codigo: ');
+		readln(cod);
+		n.cod:=cod;
+		seek(arch,filepos(arch)-1);
+		write(arch,n);
+	end
+	else 
+		writeln('Codigo de Novela No Existente!');
+		close(arch);
+ end;
+  procedure modificar_genero();
+ var arch:archivo;pos:integer;gen:cadena;n:novelas;
+ begin
+	abrir_archivo(arch);
+	pos:=buscarpos(arch);
+	if(pos<>-1) then begin
+		seek(arch,pos);
+		read(arch,n);
+		writeln('Ingrese Nuevo Genero: ');
+		readln(gen);
+		n.genero:=gen;
+		seek(arch,filepos(arch)-1);
+		write(arch,n);
+	end
+	else 
+		writeln('Codigo de Novela No Existente!');
+		close(arch);
+ end;  
 procedure inb();
 var op:char;
 begin
+writeln('-------------------MENU2------------------------');
 writeln('"a" Agregar una Novela');
 writeln('"b" Modificar Nombre Novela Existente');
 writeln('"c" Modificar Precio Novela Existente');
 writeln('"d" Modificar Codigo Novela Existente');
 writeln('"e" Modificar Genero Novela Existente');
 writeln('"f" Cerrar Menu');
+writeln('-------------------------------------------------');
 readln(op);
 if (op<>'f') then begin 
 	case op of
 		'a': agregar();
 		'b':modificar_nom();
-		//'c': modificar_ pre();
-		//'d':modificar_cod();
-		//'e': modificar_genero();
+		'c': modificar_pre();
+		'd':modificar_cod();
+		'e': modificar_genero();
 	else begin
 		writeln('Ingrese una Opcion Valida!');
 		inb;
@@ -152,15 +189,19 @@ end;
 procedure menu();
 var op:char;
 begin
+writeln('-------------------MENU--------------------------');
 writeln('"a" Crear Archivo');
 writeln('"b" Modificar Archivo');
-writeln('"c" Cerrar Menu');
+writeln('"c" Exportar');
+writeln('"d" Cerrar Menu');
+writeln('---------------------------------------------------');
 readln(op);
-if (op<>'c') then 
+if (op<>'d') then 
 	begin
 		case op of
 			'a': crear_archivo();
 			'b': inb();
+			'c': exportar();
 		else begin
 			writeln('Por favor, ingrese una opcion valida');
 			menu;
