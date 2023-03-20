@@ -1,0 +1,15 @@
+77 55.50 Xiamomi
+10010 PrecioCalidad
+X11
+15 66.70 Samsong 
+505 
+S10
+55 100.10 Moto
+45 MotoPiola
+G5
+69 55.80Motorola
+612Malardo
+Moto e
+77 66.70Motorola
+55No hay mas 
+Moto z

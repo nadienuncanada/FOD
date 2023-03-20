@@ -1,0 +1,9 @@
+77 55.5 Xiamomi
+100 10 PrecioCalidad
+X11
+15 66.7 Samsong 
+50 5 
+S10
+55 100.1 Moto
+4 5 MotoPiola
+G5
