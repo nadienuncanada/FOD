@@ -31,16 +31,16 @@ var i,actual,aux,tot:integer;mae:maestro;reg:productos;
 begin
   min.cod:=valor_alto;
   for i:=0 to df do begin
-    if(reg_det[i].cod<min.cod) then begin//recorres el vector de ventas actualizando min y la pos
+    if(r_det[i].cod<min.cod) then begin//recorres el vector de ventas actualizando min y la pos
         actual:=i;//despues va a servir para saber que dato actualizar
-        min:=reg_det[i];//actualizas minimo
+        min:=r_det[i];//actualizas minimo
       end;
-      leer(data[actual],reg_det[actual]);//cargas el vector con el archivo del actual que usaste/fue le minimo y hay que cambiarlo
+      leer(deta[actual],r_det[actual]);//cargas el vector con el archivo del actual que usaste/fue le minimo y hay que cambiarlo
   end;
   for i:= 1 to n do begin//preparar todos los detalles con nombre det i,y prepararlos en el array.
     assign (deta[i], 'det'+i); 
     reset(deta[i]);
-    leer(deta[i],reg_det[i]);
+    leer(deta[i],r_det[i]);
   end;
   assign(mae,'maestro');//abrimos el maestro
   reset(mae);//lo ponemos para modificarlo
