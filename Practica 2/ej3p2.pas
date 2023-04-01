@@ -35,6 +35,7 @@ begin
         actual:=i;//despues va a servir para saber que dato actualizar
         min:=r_det[i];//actualizas minimo
       end;
+    if(min.cod <> valor_alto) then
       leer(deta[actual],r_det[actual]);//cargas el vector con el archivo del actual que usaste/fue le minimo y hay que cambiarlo
   end;
   for i:= 1 to n do begin//preparar todos los detalles con nombre det i,y prepararlos en el array.

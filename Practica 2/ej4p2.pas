@@ -45,13 +45,14 @@ end;
 procedure ini_det(var deta:arc_det;var r_det:reg_det);
 var i:integer;a:string;
 begin
-  writeln('hola');
+ // writeln('hola');// para ver muere
   for i:=1 to df do begin
     Str(i,a);
     assign(deta[i],'det'+a);
     reset(deta[i]);
+    leer(deta[i],r_det[i]);
   end;
-  writeln('chau');
+//  writeln('chau');
 end;
 procedure clo_det(var deta:arc_det);
 var i:integer;
