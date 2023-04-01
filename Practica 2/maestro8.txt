@@ -1,0 +1,12 @@
+1 15 pedro 
+2019 3 1 perez
+1 15 pedro
+2019 3 2 perez
+1 20 pedro 
+2019 4 7 perez
+1 50 pedro 
+2020 5 6 perez
+2 20 ignacio 
+2019 3 4 melo
+2 30 ignacio 
+2019 3 6 melo

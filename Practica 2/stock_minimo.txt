@@ -1,0 +1,6 @@
+1 15.50  detergente
+5 15
+2 25.00  esponja
+5 10
+4 10.00  cloro
+4 5

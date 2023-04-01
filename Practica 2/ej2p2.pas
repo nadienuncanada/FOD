@@ -70,7 +70,7 @@ begin
  reset(archMae);//leer y es
  read(archMae,regm);//leemos el primer maestro
  leer(archDe,regd);//arrancamos el detalle
-  while(regd.cod=valor_alto) do begin //mientras no se final del detalle
+  while(regd.cod=valor_alto) do begin //mientras no se final del detalle// 1 del 4, veo mi codigo y tendria que ser mientras sea diferente(<>) a valor_alto.
     auxCod:=regd.cod;//aux guarda el cod
     CF:=0;//contador
     SF:=0;//contador

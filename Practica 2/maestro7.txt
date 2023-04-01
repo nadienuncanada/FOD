@@ -1,0 +1,8 @@
+1 15.5 detergente
+10 15
+2 25 esponja
+5 10
+3 50 lavandina
+20 10 
+4 10 cloro
+5 5
