@@ -1,0 +1,10 @@
+1 10 15 
+Entre Rios
+2 6 19 
+Jujuy
+3 15 17 
+La Pampa
+4 10 12 
+Misiones
+5 5 7 
+Santa Fe
