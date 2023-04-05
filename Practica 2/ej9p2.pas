@@ -34,7 +34,7 @@ begin
 end;
 
 procedure contabilizar();
-var ma:maestro;v,aux:votos;gvp,gvt,gvl:integer;//gvl para provincia,gvp para totales
+var ma:maestro;v,aux:votos;gvp,gvt,gvl:integer;
 begin
   assign(ma,'maestro9');
   reset(ma);
