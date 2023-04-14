@@ -1,0 +1,6 @@
+0 
+10 Igna
+5 Capi
+8 Pepe
+90 n
+55 cin
